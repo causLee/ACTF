@@ -1,1 +1,4 @@
-My CTF writeup :)
+## Writeups
+
+Collection of CTF writeups.
+
