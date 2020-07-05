@@ -1,8 +1,8 @@
-### mginx
+## mginx
 
 The binary is a http server of mips64 architecture, which receives our http requests and give responses. The logic is quite simple, and the server only parses several params in the header.
 
-#### vuln
+### vuln
 
 A problem exists when we concatenate the content data after the header. The code is like this:
 
@@ -16,7 +16,7 @@ while ((content_len != 0 && (read_sz = read(0, content_ptr, content_len), 0 < re
 
 As we can see, `content_ptr` should add `read_sz` rather than `content_len`. As a result, we can send small data to trigger large span of `content_ptr`, thus to cause buffer overflow.
 
-#### rop
+### rop
 
 The binary is dynamically linked and remote environment has ASLR opened, so we need to use some gadgets in the binary. 
 
@@ -39,7 +39,7 @@ Instead, I managed to jump back and trigger stack pivot. Because of the overflow
 
 Thus, we can read our new http header / content in the .bss section, which is RWX. We can read our shellcode on it, and do overflow again to control pc there. 
 
-#### exploit
+### exploit
 
 ```python
 from pwn import *
