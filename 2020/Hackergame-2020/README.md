@@ -53,7 +53,7 @@ r.interactive()
 
 ## 超精准的宇宙射线模拟器
 
-修改返回地址的1个bit，使程序流在main函数中产生循环，可以达到任意地址写的效果，然后写shellcode进行跳转。
+修改exit的got表1个bit，使程序流在main函数中产生循环，可以达到任意地址写的效果，然后写shellcode进行跳转。
 
 ```python
 from pwn import *
