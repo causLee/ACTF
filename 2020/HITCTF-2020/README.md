@@ -60,9 +60,9 @@ A simple HTTP header parser written in MIPSEL32. The vuln is below:
   }
 ```
 
-`snprintf` will return more than v3, the causing integer overflow. Thus we can overflow the stack.
+`snprintf` will return more than v3, then causing integer overflow. Thus we can overflow the stack.
 
-We simple write shellcode on the bss section (which seems RWX), and jumps to shellcode.
+We simple write shellcode on the bss section (which seems RWX), and jump to shellcode.
 
 ```python
 from pwn import *
@@ -70,7 +70,6 @@ context.arch = 'mips'
 context.endian = 'little'
 context.log_level = "debug"
 context.bits = 32
-context.terminal = ['tmux', 'split', '-h']
 
 import sys 
 
